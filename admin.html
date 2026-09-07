@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manage Items — Poona General Store</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <span class="brand-mark">PGS</span>
+        <div class="brand-text">
+          <h1>Poona General Store</h1>
+          <p>Everyday essentials, since forever.</p>
+        </div>
+      </div>
+      <nav class="main-nav">
+        <a href="index.html">Store</a>
+        <a href="admin.html" class="active">Manage Items</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container admin-main">
+
+    <!-- Locked view -->
+    <section id="lockScreen" class="panel lock-screen">
+      <h2>Enter password to manage items</h2>
+      <p class="muted">This area is for store staff only.</p>
+      <form id="lockForm">
+        <input type="password" id="passwordInput" placeholder="Password" autocomplete="current-password" required>
+        <button type="submit">Unlock</button>
+      </form>
+      <p id="lockError" class="error-text" hidden>Incorrect password. Try again.</p>
+    </section>
+
+    <!-- Unlocked view -->
+    <section id="adminPanel" class="admin-panel" hidden>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Add a new item</h2>
+          <button id="lockAgainBtn" class="secondary-btn">Lock screen</button>
+        </div>
+
+        <form id="itemForm" class="item-form">
+          <div class="form-row">
+            <label>
+              Item name
+              <input type="text" id="itemName" required placeholder="e.g. Vada Pav">
+            </label>
+            <label>
+              Category
+              <input type="text" id="itemCategory" required placeholder="e.g. Menu, Groceries, Snacks" list="categoryList">
+              <datalist id="categoryList"></datalist>
+            </label>
+          </div>
+
+          <div class="form-row">
+            <label>
+              Price
+              <input type="number" id="itemPrice" min="0" step="0.01" required placeholder="0.00">
+            </label>
+            <label>
+              Image URL <span class="muted">(optional)</span>
+              <input type="url" id="itemImage" placeholder="https://...">
+            </label>
+          </div>
+
+          <label class="full-width">
+            Description <span class="muted">(optional)</span>
+            <textarea id="itemDescription" rows="2" placeholder="Short description of the item"></textarea>
+          </label>
+
+          <div class="form-actions">
+            <button type="submit">Add item</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Current items</h2>
+          <button id="clearAllBtn" class="danger-btn">Delete all</button>
+        </div>
+        <div id="adminItemsWrap"></div>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> Poona General Store. Staff area.</p>
+    </div>
+  </footer>
+
+  <script src="js/store-data.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
