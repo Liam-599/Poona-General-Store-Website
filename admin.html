@@ -3,100 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Poona General Store</title>
-<style>
-  :root {
-    --cream: #faf3e6;
-    --paper: #fffaf1;
-    --wood: #6b4226;
-    --wood-dark: #4a2c19;
-    --accent: #c1440e;
-    --accent-dark: #9c360b;
-    --ink: #2c1e14;
-    --muted: #7a6a58;
-    --border: #e3d5bd;
-    --shadow: 0 4px 14px rgba(74, 44, 25, 0.12);
-    --radius: 10px;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background: var(--cream);
-    color: var(--ink);
-    line-height: 1.5;
-  }
-  h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; margin: 0; }
-  .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
-  .muted { color: var(--muted); }
-
-  .site-header { background: var(--wood); color: var(--cream); border-bottom: 5px solid var(--wood-dark); }
-  .header-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; padding: 18px 20px; }
-  .brand { display: flex; align-items: center; gap: 14px; }
-  .brand-mark { background: var(--accent); color: #fff; font-weight: bold; font-family: Georgia, serif; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--cream); flex-shrink: 0; }
-  .brand-text h1 { font-size: 1.5rem; color: var(--cream); }
-  .brand-text p { margin: 2px 0 0; font-size: 0.85rem; color: #e6d7bf; }
-  .main-nav { display: flex; gap: 6px; }
-  .main-nav button {
-    background: transparent; color: var(--cream); font-weight: 600; padding: 8px 14px;
-    border: none; border-bottom: 2px solid transparent; cursor: pointer; font-size: 0.95rem;
-    border-radius: 6px 6px 0 0;
-  }
-  .main-nav button:hover { background: rgba(255,255,255,0.08); }
-  .main-nav button.active { border-color: var(--accent); }
-
-  .hero { background: var(--paper); border-bottom: 1px solid var(--border); padding: 30px 0; }
-  .hero h2 { font-size: 1.6rem; margin-bottom: 6px; }
-  .hero p { margin: 0 0 16px; color: var(--muted); }
-  .controls { display: flex; gap: 10px; flex-wrap: wrap; }
-  #searchInput, #categoryFilter { padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 0.95rem; background: #fff; }
-  #searchInput { flex: 1; min-width: 200px; }
-
-  main.container { padding-top: 30px; padding-bottom: 50px; }
-  .category-block { margin-bottom: 36px; }
-  .category-title { font-size: 1.2rem; color: var(--wood-dark); border-bottom: 2px solid var(--accent); display: inline-block; padding-bottom: 4px; margin-bottom: 16px; }
-  .items-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 18px; }
-  .item-card { background: var(--paper); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; }
-  .item-card img { width: 100%; height: 140px; object-fit: cover; background: var(--border); }
-  .item-card .item-body { padding: 14px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
-  .item-card h3 { font-size: 1.05rem; color: var(--ink); }
-  .item-card .price { color: var(--accent-dark); font-weight: bold; font-size: 1rem; }
-  .item-card .desc { color: var(--muted); font-size: 0.88rem; flex: 1; }
-  .empty-state { text-align: center; padding: 60px 20px; color: var(--muted); }
-
-  .admin-main { padding-top: 30px; padding-bottom: 60px; }
-  .panel { background: var(--paper); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 24px; margin-bottom: 24px; }
-  .lock-screen { max-width: 420px; margin: 60px auto; text-align: center; }
-  .lock-screen form { display: flex; gap: 10px; margin-top: 18px; }
-  .lock-screen input { flex: 1; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius); }
-  .error-text { color: var(--accent); font-weight: 600; margin-top: 14px; }
-  .panel-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; flex-wrap: wrap; gap: 10px; }
-  .item-form { display: flex; flex-direction: column; gap: 14px; }
-  .form-row { display: flex; gap: 16px; flex-wrap: wrap; }
-  .form-row label, .item-form > label.full-width { display: flex; flex-direction: column; gap: 6px; font-size: 0.9rem; font-weight: 600; color: var(--wood-dark); flex: 1; min-width: 200px; }
-  input, select, textarea, button { font-family: inherit; }
-  .item-form input, .item-form textarea { padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 0.95rem; font-weight: normal; color: var(--ink); }
-  .form-actions { display: flex; justify-content: flex-end; align-items: center; gap: 12px; }
-  button { cursor: pointer; border: none; border-radius: var(--radius); padding: 10px 18px; font-size: 0.95rem; font-weight: 600; }
-  button[type="submit"], .lock-screen button { background: var(--accent); color: #fff; }
-  button[type="submit"]:hover, .lock-screen button:hover { background: var(--accent-dark); }
-  button:disabled { opacity: 0.6; cursor: not-allowed; }
-  .secondary-btn { background: var(--border); color: var(--wood-dark); }
-  .secondary-btn:hover { background: #d9c8ab; }
-  .danger-btn { background: #fff; color: var(--accent); border: 1px solid var(--accent); }
-  .danger-btn:hover { background: var(--accent); color: #fff; }
-  .admin-item-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
-  .admin-item-row:last-child { border-bottom: none; }
-  .admin-item-info h4 { margin: 0 0 3px; font-size: 1rem; }
-  .admin-item-info p { margin: 0; font-size: 0.85rem; color: var(--muted); }
-  .remove-btn { background: none; color: var(--accent); border: 1px solid var(--accent); padding: 6px 12px; font-size: 0.85rem; }
-  .remove-btn:hover { background: var(--accent); color: #fff; }
-
-  .site-footer { background: var(--wood-dark); color: #e6d7bf; padding: 18px 0; text-align: center; font-size: 0.85rem; }
-  .notice { background: #fff8ea; border: 1px solid var(--border); color: var(--wood-dark); border-radius: var(--radius); padding: 10px 14px; font-size: 0.85rem; margin-bottom: 18px; }
-  .status-line { font-size: 0.85rem; color: var(--muted); margin-top: 8px; }
-  .hidden { display: none !important; }
-</style>
+<title>Manage Items — Poona General Store</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -110,403 +18,90 @@
         </div>
       </div>
       <nav class="main-nav">
-        <button id="navStore" class="active">Store</button>
-        <button id="navAdmin">Manage Items</button>
+        <a href="index.html">Store</a>
+        <a href="admin.html" class="active">Manage Items</a>
       </nav>
     </div>
   </header>
 
-  <!-- STORE VIEW -->
-  <div id="storeView">
-    <section class="hero">
-      <div class="container">
-        <h2>What's on the shelves today</h2>
-        <p>Browse our menu and items below. Use the search box or filter by category.</p>
-        <div class="controls">
-          <input type="text" id="searchInput" placeholder="Search items...">
-          <select id="categoryFilter">
-            <option value="all">All categories</option>
-          </select>
-        </div>
-      </div>
+  <main class="container admin-main">
+
+    <!-- Locked view -->
+    <section id="lockScreen" class="panel lock-screen">
+      <h2>Enter password to manage items</h2>
+      <p class="muted">This area is for store staff only.</p>
+      <form id="lockForm">
+        <input type="password" id="passwordInput" placeholder="Password" autocomplete="current-password" required>
+        <button type="submit">Unlock</button>
+      </form>
+      <p id="lockError" class="error-text" hidden>Incorrect password. Try again.</p>
     </section>
 
-    <main class="container">
-      <div id="loadingState" class="empty-state"><p>Loading items…</p></div>
-      <div id="emptyState" class="empty-state hidden">
-        <p>No items on the shelves yet.</p>
-        <p class="muted">Head to Manage Items to add the first one.</p>
-      </div>
-      <div id="itemsWrap"></div>
-    </main>
-  </div>
+    <!-- Unlocked view -->
+    <section id="adminPanel" class="admin-panel" hidden>
 
-  <!-- ADMIN VIEW -->
-  <div id="adminView" class="hidden">
-    <main class="container admin-main">
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Add a new item</h2>
+          <button id="lockAgainBtn" class="secondary-btn">Lock screen</button>
+        </div>
 
-      <section id="lockScreen" class="panel lock-screen">
-        <h2>Enter password to manage items</h2>
-        <p class="muted">This area is for store staff only.</p>
-        <form id="lockForm">
-          <input type="password" id="passwordInput" placeholder="Password" autocomplete="current-password" required>
-          <button type="submit">Unlock</button>
-        </form>
-        <p id="lockError" class="error-text hidden">Incorrect password. Try again.</p>
-      </section>
-
-      <section id="adminPanel" class="hidden">
-        <div class="notice">Items you add here are shared — every visitor to this page sees the same live menu.</div>
-
-        <div class="panel">
-          <div class="panel-head">
-            <h2>Add a new item</h2>
-            <button id="lockAgainBtn" class="secondary-btn">Lock screen</button>
-          </div>
-
-          <form id="itemForm" class="item-form">
-            <div class="form-row">
-              <label>Item name
-                <input type="text" id="itemName" required placeholder="e.g. Vada Pav">
-              </label>
-              <label>Category
-                <input type="text" id="itemCategory" required placeholder="e.g. Menu, Groceries, Snacks" list="categoryList">
-                <datalist id="categoryList"></datalist>
-              </label>
-            </div>
-            <div class="form-row">
-              <label>Price
-                <input type="number" id="itemPrice" min="0" step="0.01" required placeholder="0.00">
-              </label>
-              <label>Image URL <span class="muted">(optional)</span>
-                <input type="url" id="itemImage" placeholder="https://...">
-              </label>
-            </div>
-            <label class="full-width">Description <span class="muted">(optional)</span>
-              <textarea id="itemDescription" rows="2" placeholder="Short description of the item"></textarea>
+        <form id="itemForm" class="item-form">
+          <div class="form-row">
+            <label>
+              Item name
+              <input type="text" id="itemName" required placeholder="e.g. Vada Pav">
             </label>
-            <div class="form-actions">
-              <span id="saveStatus" class="status-line"></span>
-              <button type="submit" id="addItemBtn">Add item</button>
-            </div>
-          </form>
-        </div>
-
-        <div class="panel">
-          <div class="panel-head">
-            <h2>Current items</h2>
-            <button id="clearAllBtn" class="danger-btn">Delete all</button>
+            <label>
+              Category
+              <input type="text" id="itemCategory" required placeholder="e.g. Menu, Groceries, Snacks" list="categoryList">
+              <datalist id="categoryList"></datalist>
+            </label>
           </div>
-          <div id="adminItemsWrap"></div>
+
+          <div class="form-row">
+            <label>
+              Price
+              <input type="number" id="itemPrice" min="0" step="0.01" required placeholder="0.00">
+            </label>
+            <label>
+              Image URL <span class="muted">(optional)</span>
+              <input type="url" id="itemImage" placeholder="https://...">
+            </label>
+          </div>
+
+          <label class="full-width">
+            Description <span class="muted">(optional)</span>
+            <textarea id="itemDescription" rows="2" placeholder="Short description of the item"></textarea>
+          </label>
+
+          <div class="form-actions">
+            <button type="submit">Add item</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Current items</h2>
+          <button id="clearAllBtn" class="danger-btn">Delete all</button>
         </div>
-      </section>
-    </main>
-  </div>
+        <div id="adminItemsWrap"></div>
+      </div>
+
+    </section>
+  </main>
 
   <footer class="site-footer">
-    <div class="container"><p>&copy; <span id="year"></span> Poona General Store. All prices in your local currency.</p></div>
+    <div class="container">
+      <p>&copy; <span id="year"></span> Poona General Store. Staff area.</p>
+    </div>
   </footer>
 
-<script>
-document.getElementById("year").textContent = new Date().getFullYear();
-
-const ADMIN_PASSWORD = "poona123"; // change this to whatever you like
-const ITEMS_KEY = "poona-items";
-
-const SEED_ITEMS = [
-  { id: "seed-1", name: "Vada Pav", category: "Menu", price: 30, description: "Spiced potato fritter in a soft bun, served with chutney.", image: "" },
-  { id: "seed-2", name: "Basmati Rice (1kg)", category: "Groceries", price: 120, description: "Long-grain aged basmati rice.", image: "" },
-  { id: "seed-3", name: "Masala Chai", category: "Beverages", price: 15, description: "Freshly brewed spiced tea.", image: "" }
-];
-
-let currentItems = [];
-
-// ---------- storage helpers ----------
-async function loadItems() {
-  try {
-    const result = await window.storage.get(ITEMS_KEY, true);
-    if (result && result.value) {
-      currentItems = JSON.parse(result.value);
-    } else {
-      currentItems = SEED_ITEMS;
-      await window.storage.set(ITEMS_KEY, JSON.stringify(currentItems), true);
-    }
-  } catch (e) {
-    // key doesn't exist yet, or read failed -> seed it
-    try {
-      currentItems = SEED_ITEMS;
-      await window.storage.set(ITEMS_KEY, JSON.stringify(currentItems), true);
-    } catch (e2) {
-      console.error("Storage unavailable:", e2);
-      currentItems = [];
-    }
-  }
-}
-
-async function persistItems() {
-  const result = await window.storage.set(ITEMS_KEY, JSON.stringify(currentItems), true);
-  if (!result) throw new Error("Save failed");
-}
-
-function escapeHtml(str) {
-  const div = document.createElement("div");
-  div.textContent = str ?? "";
-  return div.innerHTML;
-}
-function formatPrice(value) {
-  const num = Number(value);
-  return isNaN(num) ? value : num.toFixed(2);
-}
-
-// ---------- nav ----------
-const navStore = document.getElementById("navStore");
-const navAdmin = document.getElementById("navAdmin");
-const storeView = document.getElementById("storeView");
-const adminView = document.getElementById("adminView");
-
-navStore.addEventListener("click", () => {
-  navStore.classList.add("active");
-  navAdmin.classList.remove("active");
-  storeView.classList.remove("hidden");
-  adminView.classList.add("hidden");
-  renderStoreItems();
-});
-navAdmin.addEventListener("click", () => {
-  navAdmin.classList.add("active");
-  navStore.classList.remove("active");
-  adminView.classList.remove("hidden");
-  storeView.classList.add("hidden");
-  if (unlocked) renderAdminItems();
-});
-
-// ---------- store view ----------
-const itemsWrap = document.getElementById("itemsWrap");
-const emptyState = document.getElementById("emptyState");
-const loadingState = document.getElementById("loadingState");
-const searchInput = document.getElementById("searchInput");
-const categoryFilter = document.getElementById("categoryFilter");
-
-function populateCategoryFilter() {
-  const categories = [...new Set(currentItems.map(i => i.category).filter(Boolean))].sort();
-  const prev = categoryFilter.value;
-  categoryFilter.innerHTML = '<option value="all">All categories</option>';
-  categories.forEach(cat => {
-    const opt = document.createElement("option");
-    opt.value = cat; opt.textContent = cat;
-    categoryFilter.appendChild(opt);
-  });
-  if (categories.includes(prev)) categoryFilter.value = prev;
-}
-
-function renderStoreItems() {
-  loadingState.classList.add("hidden");
-  populateCategoryFilter();
-
-  const query = searchInput.value.trim().toLowerCase();
-  const selectedCategory = categoryFilter.value;
-
-  const filtered = currentItems.filter(item => {
-    const matchesQuery = !query || item.name.toLowerCase().includes(query) || (item.description || "").toLowerCase().includes(query);
-    const matchesCategory = selectedCategory === "all" || item.category === selectedCategory;
-    return matchesQuery && matchesCategory;
-  });
-
-  itemsWrap.innerHTML = "";
-
-  if (currentItems.length === 0) {
-    emptyState.classList.remove("hidden");
-    return;
-  }
-  emptyState.classList.add("hidden");
-
-  if (filtered.length === 0) {
-    const p = document.createElement("p");
-    p.className = "muted";
-    p.textContent = "No items match your search.";
-    itemsWrap.appendChild(p);
-    return;
-  }
-
-  const grouped = {};
-  filtered.forEach(item => {
-    const cat = item.category || "Uncategorized";
-    (grouped[cat] = grouped[cat] || []).push(item);
-  });
-
-  Object.keys(grouped).sort().forEach(cat => {
-    const block = document.createElement("div");
-    block.className = "category-block";
-    const title = document.createElement("h3");
-    title.className = "category-title";
-    title.textContent = cat;
-    block.appendChild(title);
-
-    const grid = document.createElement("div");
-    grid.className = "items-grid";
-
-    grouped[cat].forEach(item => {
-      const card = document.createElement("div");
-      card.className = "item-card";
-      const imageHtml = item.image
-        ? `<img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.name)}" onerror="this.style.display='none'">`
-        : "";
-      card.innerHTML = `
-        ${imageHtml}
-        <div class="item-body">
-          <h3>${escapeHtml(item.name)}</h3>
-          <div class="price">$${formatPrice(item.price)}</div>
-          ${item.description ? `<p class="desc">${escapeHtml(item.description)}</p>` : ""}
-        </div>`;
-      grid.appendChild(card);
-    });
-    block.appendChild(grid);
-    itemsWrap.appendChild(block);
-  });
-}
-
-searchInput.addEventListener("input", renderStoreItems);
-categoryFilter.addEventListener("change", renderStoreItems);
-
-// ---------- admin view ----------
-let unlocked = false;
-const lockScreen = document.getElementById("lockScreen");
-const adminPanel = document.getElementById("adminPanel");
-const lockForm = document.getElementById("lockForm");
-const passwordInput = document.getElementById("passwordInput");
-const lockError = document.getElementById("lockError");
-const lockAgainBtn = document.getElementById("lockAgainBtn");
-const itemForm = document.getElementById("itemForm");
-const adminItemsWrap = document.getElementById("adminItemsWrap");
-const clearAllBtn = document.getElementById("clearAllBtn");
-const categoryList = document.getElementById("categoryList");
-const saveStatus = document.getElementById("saveStatus");
-const addItemBtn = document.getElementById("addItemBtn");
-
-function unlockAdmin() {
-  unlocked = true;
-  lockScreen.classList.add("hidden");
-  adminPanel.classList.remove("hidden");
-  renderAdminItems();
-}
-function lockAdmin() {
-  unlocked = false;
-  lockScreen.classList.remove("hidden");
-  adminPanel.classList.add("hidden");
-  passwordInput.value = "";
-  lockError.classList.add("hidden");
-}
-
-lockForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  if (passwordInput.value === ADMIN_PASSWORD) {
-    unlockAdmin();
-  } else {
-    lockError.classList.remove("hidden");
-  }
-});
-lockAgainBtn.addEventListener("click", lockAdmin);
-
-function populateCategoryDatalist() {
-  const categories = [...new Set(currentItems.map(i => i.category).filter(Boolean))].sort();
-  categoryList.innerHTML = "";
-  categories.forEach(cat => {
-    const opt = document.createElement("option");
-    opt.value = cat;
-    categoryList.appendChild(opt);
-  });
-}
-
-function renderAdminItems() {
-  populateCategoryDatalist();
-  adminItemsWrap.innerHTML = "";
-
-  if (currentItems.length === 0) {
-    const p = document.createElement("p");
-    p.className = "muted";
-    p.textContent = "No items yet. Add one using the form above.";
-    adminItemsWrap.appendChild(p);
-    return;
-  }
-
-  currentItems.forEach(item => {
-    const row = document.createElement("div");
-    row.className = "admin-item-row";
-    row.innerHTML = `
-      <div class="admin-item-info">
-        <h4>${escapeHtml(item.name)} <span class="muted">— ${escapeHtml(item.category)}</span></h4>
-        <p>$${formatPrice(item.price)}${item.description ? " · " + escapeHtml(item.description) : ""}</p>
-      </div>
-      <button class="remove-btn" data-id="${item.id}">Remove</button>`;
-    adminItemsWrap.appendChild(row);
-  });
-
-  adminItemsWrap.querySelectorAll(".remove-btn").forEach(btn => {
-    btn.addEventListener("click", async () => {
-      btn.disabled = true;
-      const prev = [...currentItems];
-      currentItems = currentItems.filter(i => i.id !== btn.dataset.id);
-      try {
-        await persistItems();
-        renderAdminItems();
-      } catch (e) {
-        currentItems = prev;
-        alert("Could not remove item — please try again.");
-        renderAdminItems();
-      }
-    });
-  });
-}
-
-itemForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const name = document.getElementById("itemName").value.trim();
-  const category = document.getElementById("itemCategory").value.trim();
-  const price = document.getElementById("itemPrice").value;
-  const image = document.getElementById("itemImage").value.trim();
-  const description = document.getElementById("itemDescription").value.trim();
-  if (!name || !category || price === "") return;
-
-  const newItem = {
-    id: "item-" + Date.now() + "-" + Math.floor(Math.random() * 1000),
-    name, category, price: Number(price), image, description
-  };
-
-  addItemBtn.disabled = true;
-  saveStatus.textContent = "Saving…";
-  const prev = [...currentItems];
-  currentItems.push(newItem);
-  try {
-    await persistItems();
-    itemForm.reset();
-    saveStatus.textContent = "Saved.";
-    renderAdminItems();
-  } catch (e) {
-    currentItems = prev;
-    saveStatus.textContent = "Save failed — try again.";
-  } finally {
-    addItemBtn.disabled = false;
-    setTimeout(() => saveStatus.textContent = "", 2000);
-  }
-});
-
-clearAllBtn.addEventListener("click", async () => {
-  if (!confirm("Delete ALL items? This cannot be undone, and affects every visitor.")) return;
-  const prev = [...currentItems];
-  currentItems = [];
-  try {
-    await persistItems();
-    renderAdminItems();
-  } catch (e) {
-    currentItems = prev;
-    alert("Could not clear items — please try again.");
-  }
-});
-
-// ---------- init ----------
-(async function init() {
-  await loadItems();
-  renderStoreItems();
-})();
-</script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/store-data.js"></script>
+  <script src="js/admin.js"></script>
 </body>
 </html>
