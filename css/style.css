@@ -157,6 +157,17 @@ main.container { padding-top: 30px; padding-bottom: 50px; }
   box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.item-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(74, 44, 25, 0.22);
+  border-color: var(--accent);
+}
+
+.item-card:hover img {
+  filter: brightness(1.04);
 }
 
 .item-card img {
