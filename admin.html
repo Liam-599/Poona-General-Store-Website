@@ -19,6 +19,7 @@
       </div>
       <nav class="main-nav">
         <a href="index.html">Store</a>
+        <a href="cafe.html">Cafe</a>
         <a href="admin.html" class="active">Manage Items</a>
       </nav>
     </div>
@@ -47,6 +48,16 @@
         </div>
 
         <form id="itemForm" class="item-form">
+          <div class="form-row">
+            <label>
+              Section
+              <select id="itemSection" style="padding:11px 14px;border:1.5px solid #e3e6ea;border-radius:10px;font-size:0.95rem;font-family:inherit;background:#fff;color:#15181d;">
+                <option value="store">Store</option>
+                <option value="cafe">Cafe</option>
+              </select>
+            </label>
+          </div>
+
           <div class="form-row">
             <label>
               Item name

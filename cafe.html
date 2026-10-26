@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cafe — Poona General Store</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-section="cafe">
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <span class="brand-mark">PGS</span>
+        <div class="brand-text">
+          <h1>Poona General Store</h1>
+          <p>Everyday essentials, since forever.</p>
+        </div>
+      </div>
+      <nav class="main-nav">
+        <a href="index.html">Store</a>
+        <a href="cafe.html" class="active">Cafe</a>
+        <a href="admin.html">Manage Items</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h2>Fresh from the cafe</h2>
+      <p>Chai, snacks and meals made to order. Search the menu or filter by category.</p>
+      <div class="controls">
+        <input type="text" id="searchInput" placeholder="Search the menu...">
+        <select id="categoryFilter">
+          <option value="all">All categories</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <main class="container">
+    <div id="emptyState" class="empty-state" hidden>
+      <p>The cafe menu is empty.</p>
+      <p class="muted">Head to <a href="admin.html">Manage Items</a>, choose Cafe as the section, and add the first dish.</p>
+    </div>
+
+    <div id="itemsWrap"></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> Poona General Store. All prices in your local currency.</p>
+    </div>
+  </footer>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/store-data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/easter-egg.js"></script>
+</body>
+</html>
